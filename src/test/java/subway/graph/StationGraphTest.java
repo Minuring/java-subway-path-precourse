@@ -36,7 +36,7 @@ class StationGraphTest {
             yangjaeForest
         );
 
-        int weight = distanceGraph.getShortestPathWeight(gyodae, yangjaeForest);
+        int weight = GraphAdvice.calculatePathDistance(paths);
         assertThat(weight).isEqualTo(14);
     }
 
@@ -51,7 +51,7 @@ class StationGraphTest {
             yangjaeForest
         );
 
-        int weight = timeGraph.getShortestPathWeight(gyodae, yangjaeForest);
+        int weight = GraphAdvice.calculatePathTime(paths);
         assertThat(weight).isEqualTo(10);
     }
 }
