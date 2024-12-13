@@ -29,6 +29,9 @@ public class EdgeRepository {
             if (edge.getFrom().equals(station1) && edge.getTo().equals(station2)) {
                 return function.apply(edge);
             }
+            if (edge.getFrom().equals(station2) && edge.getTo().equals(station1)) {
+                return function.apply(edge);
+            }
         }
         throw new IllegalArgumentException(Error.UNREACHABLE.message());
     }

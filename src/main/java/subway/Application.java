@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Scanner;
 import subway.domain.Station;
 import subway.error.Error;
-import subway.graph.EdgeRepository;
 import subway.graph.GraphAdvice;
 import subway.graph.StationGraph;
 import subway.view.Choice;
@@ -48,8 +47,9 @@ public class Application {
 
     private static void query(StationGraph graph, Station from, Station to) {
         List<Station> path = graph.getShortestPath(from, to);
-        int totalTime = GraphAdvice.calculatePathTime(path);
+        path.forEach(s -> System.out.println(s.getName()));
         int totalDistance = GraphAdvice.calculatePathDistance(path);
+        int totalTime = GraphAdvice.calculatePathTime(path);
         OutputView.printResult(new Result(totalDistance, totalTime, path));
     }
 }
