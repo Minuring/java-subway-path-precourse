@@ -1,6 +1,7 @@
 package subway;
 
 import java.util.Scanner;
+import subway.domain.Station;
 import subway.view.Choice;
 import subway.view.InputView;
 
@@ -15,6 +16,8 @@ public class Application {
             if (choice == Choice.BACK) {
                 continue;
             }
+            Station from = InputView.readStation(scanner, "출발역");
+            Station to = InputView.readStation(scanner, "도착역");
             //조회
         }
     }

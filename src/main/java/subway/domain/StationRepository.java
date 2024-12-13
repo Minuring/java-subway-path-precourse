@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import subway.error.Error;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
@@ -28,6 +29,6 @@ public class StationRepository {
         return stations.stream()
             .filter(station -> station.getName().equals(name))
             .findAny()
-            .orElseThrow();
+            .orElseThrow(() -> new IllegalArgumentException(Error.STATION_NOT_FOUND.message()));
     }
 }
