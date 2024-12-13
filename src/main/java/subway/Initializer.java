@@ -2,22 +2,16 @@ package subway;
 
 import static subway.domain.StationRepository.addStation;
 
+import java.util.ArrayList;
+import java.util.List;
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import subway.graph.DistanceGraph;
-import subway.graph.TimeGraph;
+import subway.graph.Edge;
+import subway.graph.StationGraph;
 
 public class Initializer {
 
-    public static void initializeStations() {
-        registerAllStations();
-        DistanceGraph.synchronizeStations();
-        TimeGraph.synchronizeStations();
-        linkAllDistanceGraph();
-        linkAllTimeGraph();
-    }
-
-    private static void registerAllStations() {
+    static {
         addStation(new Station("교대역"));
         addStation(new Station("강남역"));
         addStation(new Station("역삼역"));
@@ -27,37 +21,31 @@ public class Initializer {
         addStation(new Station("매봉역"));
     }
 
-    private static void linkAllDistanceGraph() {
-        linkDistanceTogether("교대역", "강남역", 2);
-        linkDistanceTogether("강남역", "역삼역", 2);
-        linkDistanceTogether("교대역", "남부터미널역", 3);
-        linkDistanceTogether("남부터미널역", "양재역", 6);
-        linkDistanceTogether("양재역", "매봉역", 1);
-        linkDistanceTogether("강남역", "양재역", 2);
-        linkDistanceTogether("양재역", "양재시민의숲역", 10);
+    public static void initializeStations(StationGraph distanceGraph, StationGraph timeGraph) {
+        distanceGraph.synchronizeStations();
+        timeGraph.synchronizeStations();
+        List<Edge> edges = createEdges();
+        for (Edge edge : edges) {
+            distanceGraph.link(edge.getFrom(), edge.getTo(), edge.getDistance());
+            timeGraph.link(edge.getFrom(), edge.getTo(), edge.getTime());
+        }
     }
 
-    private static void linkDistanceTogether(String station1, String station2, int distance) {
-        Station stationA = StationRepository.getByName(station1);
-        Station stationB = StationRepository.getByName(station2);
-        DistanceGraph.link(stationA, stationB, distance);
-        DistanceGraph.link(stationB, stationA, distance);
+    private static List<Edge> createEdges() {
+        List<Edge> edges = new ArrayList<>();
+        edges.add(createEdge("교대역", "강남역", 2, 3));
+        edges.add(createEdge("강남역", "역삼역", 2, 3));
+        edges.add(createEdge("교대역", "남부터미널역", 3, 2));
+        edges.add(createEdge("남부터미널역", "양재역", 6, 5));
+        edges.add(createEdge("양재역", "매봉역", 1, 1));
+        edges.add(createEdge("강남역", "양재역", 2, 8));
+        edges.add(createEdge("양재역", "양재시민의숲역", 10, 3));
+        return edges;
     }
 
-    private static void linkAllTimeGraph() {
-        linkTimeTogether("교대역", "강남역", 3);
-        linkTimeTogether("강남역", "역삼역", 3);
-        linkTimeTogether("교대역", "남부터미널역", 2);
-        linkTimeTogether("남부터미널역", "양재역", 5);
-        linkTimeTogether("양재역", "매봉역", 1);
-        linkTimeTogether("강남역", "양재역", 8);
-        linkTimeTogether("양재역", "양재시민의숲역", 3);
-    }
-
-    private static void linkTimeTogether(String station1, String station2, int distance) {
-        Station stationA = StationRepository.getByName(station1);
-        Station stationB = StationRepository.getByName(station2);
-        TimeGraph.link(stationA, stationB, distance);
-        TimeGraph.link(stationB, stationA, distance);
+    private static Edge createEdge(String name1, String name2, int distance, int time) {
+        Station station1 = StationRepository.getByName(name1);
+        Station station2 = StationRepository.getByName(name2);
+        return new Edge(station1, station2, distance, time);
     }
 }
