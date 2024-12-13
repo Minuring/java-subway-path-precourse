@@ -20,6 +20,12 @@ public class InputView {
             });
     }
 
+    public static Choice readChoice(Scanner scanner) {
+        return readUntilSuccess(scanner,
+            () -> System.out.println("## 경로 기준\n1. 최단거리\n2. 최소 시간\nB. 돌아가기\n\n## 원하는 기능을 선택하세요."),
+            Choice::from);
+    }
+
     private static <T> T readUntilSuccess(Scanner scanner, Runnable printable,
         Function<String, T> function) {
         while (true) {
