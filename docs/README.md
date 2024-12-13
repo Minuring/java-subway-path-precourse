@@ -1,7 +1,7 @@
 ## 구현할 기능 목록
 
 ### 초기 설정
-- [ ] 프로그램 시작 시 역, 노선, 구간 정보를 초기 설정한다.
+- [x] 프로그램 시작 시 역, 노선, 구간 정보를 초기 설정한다.
   - 거리와 소요 시간은 양의 정수이며 단위는 km와 분을 의미한다.
     ```
      1. 지하철역으로 교대역, 강남역, 역삼역, 남부터미널역, 양재역, 양재시민의숲역, 매봉역이 등록되어 있다.
@@ -13,8 +13,8 @@
      ```
 
 ### 경로 조회 기능
-- [ ] 출발역과 도착역을 입력받아 경로를 조회한다.
-- [ ] 경로 조회 시 총 거리, 총 소요 시간도 함께 출력한다.
+- [x] 출발역과 도착역을 입력받아 경로를 조회한다.
+- [x] 경로 조회 시 총 거리, 총 소요 시간도 함께 출력한다.
     - [x] `최단 거리` 기준 경로 조회 
     - [x] `최소 시간` 기준 조회
 
@@ -107,13 +107,13 @@ B. 돌아가기
 ```
 
 ### 프로그래밍 요구사항 - Application
-- [ ] Check
+- [x] Check
 - Application 클래스를 활용해 구현해야 한다.
 - Application의 패키지 구조는 변경하지 않는다.
 - Application 클래스에 있는 Scanner를 사용하고 별도의 Scanner 객체를 만들지 않는다.
 
 ### 프로그래밍 요구사항 - Station, Line
-- [ ] Check
+- [x] Check
 - Station, Line 클래스를 활용하여 지하철역과 노선을 구현해야 한다.
 - 제공하는 각 클래스의 기본 생성자를 추가할 수 없다.
 - 필드(인스턴스 변수)인 name의 접근 제어자 private을 변경할 수 없다.
@@ -137,7 +137,7 @@ public class Station {
 ```
 
 ### 프로그래밍 요구사항 - StationRepository, LineRepository
-- [ ] Check
+- [x] Check
 - Station과 Line의 상태를 저장할 수 있는 StationRepository, LineRepository를 제공한다.
 - 필요 시 StationRepository, LineRepository 이 외 추가로 Repository를 만들 수 있다.
 - 추가로 생성되는 객체에 대해서 XXXRepository 네이밍으로 저장 클래스를 추가한다.

@@ -7,6 +7,7 @@ import java.util.List;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.graph.Edge;
+import subway.graph.EdgeRepository;
 import subway.graph.StationGraph;
 
 public class Initializer {
@@ -25,6 +26,7 @@ public class Initializer {
         distanceGraph.synchronizeStations();
         timeGraph.synchronizeStations();
         List<Edge> edges = createEdges();
+        EdgeRepository.addAllEdges(edges);
         for (Edge edge : edges) {
             distanceGraph.link(edge.getFrom(), edge.getTo(), edge.getDistance());
             timeGraph.link(edge.getFrom(), edge.getTo(), edge.getTime());

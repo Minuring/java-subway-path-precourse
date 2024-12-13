@@ -28,16 +28,6 @@ public class StationGraph {
         return path.getVertexList();
     }
 
-    public List getShortestPathEdges(Station from, Station to) {
-        GraphPath path = getPath(from, to);
-        return path.getEdgeList();
-    }
-
-    public int getShortestPathWeight(Station from, Station to) {
-        GraphPath path = getPath(from, to);
-        return (int) path.getWeight();
-    }
-
     private GraphPath getPath(Station from, Station to) {
         DijkstraShortestPath dijkstraShortestPath = new DijkstraShortestPath(graph);
         GraphPath path = dijkstraShortestPath.getPath(from, to);
