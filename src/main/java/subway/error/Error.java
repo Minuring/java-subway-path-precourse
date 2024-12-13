@@ -7,7 +7,8 @@ public enum Error {
     INPUT_FORMAT("올바르지 않은 형식으로 입력했습니다. 다시 입력해 주세요."),
     BAD_INPUT("잘못된 입력입니다. 다시 입력해 주세요."),
     STATION_NOT_FOUND("존재하지 않는 역명입니다. 다시 입력해 주세요."),
-    UNREACHABLE("출발역과 도착역이 연결되어 있지 않습니다.");
+    UNREACHABLE("출발역과 도착역이 연결되어 있지 않습니다."),
+    SAME_STATION("출발역과 도착역이 동일합니다.");
 
     private static final String PREFIX = "[ERROR] ";
 
